@@ -1,0 +1,10 @@
+.footer {
+  text-align: center;
+  width: var(--width);
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}
+
+.bold {
+  font-weight: var(--fw-700);
+}
