@@ -1,0 +1,187 @@
+.keyboard {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: calc(100rem / 16);
+}
+
+.keyboard__wrapper {
+  display: grid;
+  --space-gap: 2rem;
+  --col-count: 2;
+  grid-template-columns:
+    1fr repeat(
+      var(--col-count),
+      calc(
+        (var(--width) - (var(--col-count) - 1) * var(--space-gap)) /
+          (var(--col-count) * 2)
+      )
+    )
+    1fr;
+  gap: var(--space-gap);
+}
+
+.keyboard__img-left {
+  grid-column: 1 / 2;
+  position: relative;
+  animation: fade-left 1s;
+}
+
+.keyboard__img-left::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-orange-500);
+  mix-blend-mode: multiply;
+}
+
+.keyboard__img-left img,
+.keyboard__img-right img {
+  width: 100%;
+}
+
+.keyboard__img-left::before,
+.keyboard__img-left img {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.keyboard__img-right {
+  grid-column: 2 / -1;
+  animation: fade-right 1s;
+}
+
+.keyboard__img-right img {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.keyboard__headline {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-900);
+  line-height: var(--lh-h2);
+  margin-inline: auto;
+}
+
+.keyboard__headline,
+.keyboard__desc {
+  text-align: center;
+}
+
+.flex-2 {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: var(--width);
+  margin-inline: auto;
+}
+
+/* tablet query */
+
+@media (min-width: 37.5em) {
+  .keyboard {
+    margin-bottom: calc(150rem / 16);
+  }
+
+  .keyboard__wrapper {
+    --col-count: 6;
+    grid-template-columns:
+      1fr repeat(
+        var(--col-count),
+        calc(
+          (var(--width) - (var(--col-count) - 1) * var(--space-gap)) /
+            (var(--col-count))
+        )
+      )
+      1fr;
+  }
+
+  .keyboard__img-left {
+    grid-column: 2 / 4;
+  }
+
+  .keyboard__img-left::before,
+  .keyboard__img-left img {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+  }
+
+  .keyboard__img-right {
+    grid-column: 4 / -2;
+  }
+
+  .keyboard__img-right img {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+
+  .keyboard__headline,
+  .keyboard__desc {
+    text-align: start;
+  }
+
+  .flex-2 {
+    flex-direction: row;
+  }
+}
+
+/* desktop query */
+
+@media (min-width: 56.25em) {
+  .keyboard {
+    margin-bottom: calc(170rem / 16);
+  }
+
+  .keyboard__wrapper {
+    --col-count: 12;
+  }
+
+  .keyboard__img-left {
+    grid-column: 1 / 7;
+  }
+
+  .keyboard__img-right {
+    grid-column: 7 / -1;
+  }
+
+  .keyboard__desc {
+    text-align: left;
+  }
+
+  .flex-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: var(--width);
+    margin-inline: auto;
+  }
+
+  .flex-2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 4rem;
+  }
+}
+
+/* query for showing pattern square */
+
+@media (min-width: 87.75em) {
+  .keyboard::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-image: url(/assets/shared/pattern-square.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 255px;
+    height: 240px;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    translate: -45% 0%;
+  }
+}
